@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="video">
+	
+	<insert id="add_direction" parameterType="java.util.List">
+		INSERT INTO v_direction(direction) 
+		VALUES
+		<foreach item="dire" collection="list"  separator=",">
+			(#{dire})
+		</foreach>
+	</insert>
+	
+	<select id="directionList" resultType="com.video.vo.DirectionVO">
+		SELECT * FROM v_direction
+	</select>
+	
+	<select id="findDirectionList" resultType="com.video.vo.DirectionVO">
+		SELECT * FROM v_direction
+	</select>
+	
+	
+	<delete id="delDirectionById" parameterType="int">
+		DELETE FROM v_direction WHERE id=#{id}
+	</delete>
+	<delete id="delDirectionType" parameterType="int">
+		DELETE FROM v_kc_type WHERE d_id=#{id}
+	</delete>
+	<select id="findDirectionInfo" parameterType="int" resultType="com.video.vo.DirectionVO">
+		SELECT * FROM v_direction WHERE id=#{id}
+	</select>
+	<resultMap type="dtVO" id="dtVOMap">
+		<result column="id" property="id"/>
+		<result column="t_name" property="tname"/>
+	</resultMap>
+	<select id="findDirectionType" parameterType="int" resultMap="dtVOMap">
+		SELECT * FROM v_kc_type WHERE d_id=#{id}
+	</select>
+</mapper>

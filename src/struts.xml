@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="video" extends="struts-default">
+		<action name="login" class="com.video.action.LoginAction" method="login"></action>
+		<action name="kc_*" class="com.video.action.KcAction" method="{1}">
+			<result name="direction_list">direction_list.jsp</result>
+			<result name="direction_list_action" type="chain">kc_directionList</result>
+			<result name="direction_one_info">direction_one_info.jsp</result>
+		</action>
+		
+		<action name="v_*" class="com.video.action.VideoAction" method="{1}">
+			<result name="showVideoKc">add_video_kc.jsp</result>
+		</action>
+		
+		<action name="a_*" class="com.video.action.AjaxAction" method="{1}">
+		</action>
+		
+		
+	</package>
+	
+</struts>
